@@ -5,8 +5,32 @@
 </head>
 <body>
 <p>This is an example of a simple HTML page with one paragraph.</p>
-  <a href="https://KcloudtechB2C.b2clogin.com/KcloudtechB2C.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_signupsigninflow&client_id=3b3f6288-0531-4e2e-8895-6376640d3a81&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fkamalekowshik.github.io%2FB2C%2F&scope=openid&response_type=id_token&prompt=login">Sign in</a>
-  <a href="https://KcloudtechB2C.b2clogin.com/KcloudtechB2C.onmicrosoft.com/B2C_1_signupsigninflow/oauth2/v2.0/logout">siginout</a>
-  <h5></h5>
+<div style="float:right">
+    
+  <a id="signIn" href="https://AyanMullick.b2clogin.com/AyanMullick.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_DefaultSignUp&client_id=05cca615-b7f5-41ce-829e-fae6a8183dcc&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fayanmullick.github.io%2FB2CMsSupport%2F&scope=openid&response_type=id_token&prompt=login">SignUp\SignIn</a> 
+  
+  <a  id="signout" href="https://KcloudtechB2C.b2clogin.com/KcloudtechB2C.onmicrosoft.com/B2C_1_signupsigninflow/oauth2/v2.0/logout">SiginOut</a>
+</div>
+  
+
+  <script>
+let token = document.location.href.split('#')[1]?.replace('id_token=','') ?? null;
+
+
+const parseJwt = (token) => {
+  try {return JSON.parse(atob(token.split('.')[1]));} catch (e) {return null;}
+};
+
+if(token) {
+  let data = parseJwt(token);
+  let signoutText =  document.getElementById('signout').innerHTML;
+  document.getElementById('signout').innerHTML = signoutText + " " + data['given_name'];
+  document.getElementById('signIn').style.display = 'none';
+} else {
+  document.getElementById('signout').style.display = 'none';
+
+}
+
+  </script>
 </body>
 </html>
