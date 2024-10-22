@@ -13,20 +13,16 @@
 </div>
   
 
-  <script>
+<script>
 let token = document.location.href.split('#')[1]?.replace('id_token=','') ?? null;
+const parseJwt = (token) => {try {return JSON.parse(atob(token.split('.')[1]));} catch (e) {return null;}};
 
+if (token) {let data = parseJwt(token); 
+            document.getElementById('signout').innerHTML += " " + data['given_name']; 
+            document.getElementById('signIn').style.display = 'none';} 
+else       {document.getElementById('signout').style.display = 'none';}
+</script>
 
-const parseJwt = (token) => {
-  try {return JSON.parse(atob(token.split('.')[1]));} catch (e) {return null;}
-};
-
-if (token) {
-  let data = parseJwt(token); document.getElementById('signout').innerHTML += " " + data['given_name']; document.getElementById('signIn').style.display = 'none';
-} else {
-  document.getElementById('signout').style.display = 'none';
-}
-
-  </script>
 </body>
+
 </html>
