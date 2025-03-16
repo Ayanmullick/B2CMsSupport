@@ -23,7 +23,7 @@
 
         if (token) {
             document.getElementById('signout').innerHTML += " " + parseJwt(token)['given_name'];
-            //document.getElementById('signout').href += encodeURIComponent(document.getElementById('signIn').href);
+            //document.getElementById('signout').href += encodeURIComponent(document.getElementById('signIn').href);  //remove redirect uri from signout url and uncomment this line to redirect to the logon page
             document.getElementById('signIn').style.display = 'none';
         } else {
             document.getElementById('signout').style.display = 'none';
